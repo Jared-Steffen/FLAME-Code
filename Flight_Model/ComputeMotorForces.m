@@ -1,0 +1,9 @@
+function motor_forces = ComputeMotorForces(Fc, Gc, d, km) 
+ Force_Moment = [Fc(3); Gc(1); Gc(2); Gc(3);];
+ Constant = d/(sqrt(2));
+ MatControl = [-1, -1, -1, -1;...
+               -Constant, -Constant, Constant, Constant;...
+                Constant, -Constant, -Constant, Constant;...
+                km, -km, km, -km];
+ motor_forces = inv(MatControl) * Force_Moment;
+ end
